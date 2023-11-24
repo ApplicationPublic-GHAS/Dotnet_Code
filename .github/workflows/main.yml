@@ -1,5 +1,8 @@
 name: 'Dependency Review'
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - '**/*'
 
 permissions:
   contents: read
@@ -12,3 +15,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Dependency Review
         uses: actions/dependency-review-action@main
+        with:
+          fail-on-severity: moderate
+          deny-licenses: LGPL-2.0, BSD-2-Clause
+          fail_on_severity: 'critical'
+         
